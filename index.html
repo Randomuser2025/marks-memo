@@ -3,87 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSE-A</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title> CSE-A </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f4f8;
+            font-family: 'Roboto', sans-serif;
+            background-color: #e3f2fd;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            max-width: 400px;
+            width: 100%;
         }
         h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #4a90e2;
+            color: #1e88e5;
         }
-        input {
-            padding: 10px;
-            margin-bottom: 10px;
-            font-size: 16px;
-            width: 70px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: border-color 0.3s;
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
         }
-        input:focus {
-            border-color: #4a90e2;
-            outline: none;
+        input[type="number"] {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #1e88e5;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
         }
         button {
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4a90e2;
+            background-color: #1e88e5;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
             transition: background-color 0.3s;
+            width: 100%;
         }
         button:hover {
-            background-color: #357ab8;
+            background-color: #1565c0;
         }
-        .error {
-            color: red;
-            margin-top: 10px;
-        }
-        .emoji {
-            font-size: 24px;
-            margin-right: 8px;
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #777;
         }
     </style>
 </head>
 <body>
-
-    <h1><i class="fas fa-user-graduate"></i> Check Your Friend's Marks Memo</h1>
-    <p>Enter your roll number (1-64):</p>
-    <input type="number" id="fileNumber" min="1" max="64" placeholder="1-64">
-    <button onclick="openFile()"><i class="fas fa-file-alt"></i> Open Memo</button>
-    <div class="error" id="errorMessage"></div>
+    <div class="container">
+        <h1>📄 Check Your Friend's Marks Memo</h1>
+        <p>Enter a number (1-64) :</p>
+        <input type="number" id="memoNumber" min="1" max="64" placeholder="Enter number here">
+        <button id="openMemo">📥 Open Memo</button>
+        <footer>
+            Crafted with <span style="color: red;">❤️</span> and a sprinkle of ChatGPT magic!
+        </footer>
+    </div>
 
     <script>
-        function openFile() {
-            const number = document.getElementById('fileNumber').value;
-            const errorMessage = document.getElementById('errorMessage');
-
+        function openMemo() {
+            const number = document.getElementById('memoNumber').value;
             if (number >= 1 && number <= 64) {
-                errorMessage.textContent = '';
                 window.open(`${number}.html`, '_blank');
             } else {
-                errorMessage.textContent = '🚨 Please enter a valid roll number between 1 and 64.';
+                alert('🚫 Please enter a number between 1 and 64.');
             }
         }
 
-        // Add event listener for Enter key
-        document.getElementById('fileNumber').addEventListener('keypress', function(event) {
+        document.getElementById('openMemo').onclick = openMemo;
+
+        document.getElementById('memoNumber').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
-                openFile();
+                openMemo();
             }
         });
     </script>
-
 </body>
 </html>
