@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Marks Memo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            width: 70px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ab8;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .emoji {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><i class="fas fa-user-graduate"></i> Check Your Friend's Marks Memo</h1>
+    <p>Enter your roll number (1-64):</p>
+    <input type="number" id="fileNumber" min="1" max="64" placeholder="1-64">
+    <button onclick="openFile()"><i class="fas fa-file-alt"></i> Open Memo</button>
+    <div class="error" id="errorMessage"></div>
+
+    <script>
+        function openFile() {
+            const number = document.getElementById('fileNumber').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (number >= 1 && number <= 64) {
+                errorMessage.textContent = '';
+                window.open(`${number}.html`, '_blank');
+            } else {
+                errorMessage.textContent = '🚨 Please enter a valid roll number between 1 and 64.';
+            }
+        }
+
+        // Add event listener for Enter key
+        document.getElementById('fileNumber').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                openFile();
+            }
+        });
+    </script>
+
+</body>
+</html>
